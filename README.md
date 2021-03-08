@@ -18,10 +18,10 @@ So far your directory should look like the following:
 
 ![image](https://user-images.githubusercontent.com/25397800/110263807-61009600-7f7d-11eb-9638-1a8eb4bbcc85.png)
 
-6. [PATH_TO_TIMETRAKED_JSON_FILE](https://github.com/JareBear12418/VSCode-Coding-Activity-on-Github-Profile/blob/main/main.py#L9) make sure this path is setup for your system. 
+6. [PATH_TO_TIMETRAKED_JSON_FILE](https://github.com/JareBear12418/VSCode-Coding-Activity-on-Github-Profile/blob/main/main.py#L11) make sure this path is setup for your system. 
     - My username is *jared* change it to your username.
-7. [Line 87](https://github.com/JareBear12418/VSCode-Coding-Activity-on-Github-Profile/blob/main/main.py#L87) make sure the save path is correct.
-8. Make sure the [repo](https://github.com/JareBear12418/VSCode-Coding-Activity-on-Github-Profile/blob/main/main.py#L92) is set to the direct path. 
+7. [Line 98](https://github.com/JareBear12418/VSCode-Coding-Activity-on-Github-Profile/blob/main/main.py#L98) make sure the save path is correct.
+8. Make sure the [repo](https://github.com/JareBear12418/VSCode-Coding-Activity-on-Github-Profile/blob/main/main.py#L106) is set to the direct path. 
 
 - That is everything setup for script, Now all we need to do is run the script daily. This repository is basicly just a clone of [Daily Git Commit](https://github.com/JareBear12418/Daily-Git-Commit) in terms of doing the same thing, commiting to a repository. So alot of tips and instructions are listed there if you encounter any errors with `gitpython` I will not repeat them here. The script should handle everyhing else, all thats left to do call it daily.
 
