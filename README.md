@@ -45,7 +45,6 @@ Now we need to edit our [README.md](https://github.com/JareBear12418/JareBear124
 <h4 align="center"> 2021/02/28 4:11 PM - TODAY </h4>
 </p>
 ```
-![image](https://user-images.githubusercontent.com/25397800/110265757-edad5300-7f81-11eb-81ae-6c9063f24481.png)
-
+![image](https://raw.githubusercontent.com/JareBear12418/JareBear12418/11e19755f2d297751cefbdcfff1342c5fccd5704/stats.png)
 
 Whenever you update the `stats.png` via the script, your github profile automaticly updates the preview, so your all done setting up. It's a bit of a crude setup. You're better off just using wakatime but even that its still tricky to get it set up properly. I prefer this solution because wakatime is to complicated to setup. This way I can make my own solution.
