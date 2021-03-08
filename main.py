@@ -97,4 +97,4 @@ def commit_repository():
 
 if __name__ == '__main__':
     update_file_to_commit()
-    # commit_repository()
+    commit_repository()
