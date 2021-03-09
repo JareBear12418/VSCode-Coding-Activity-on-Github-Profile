@@ -6,9 +6,11 @@ import matplotlib.pyplot as plt
 import numpy as np
 from git import Repo
 
+from names_class import Language_Names
+
 plt.style.use("dark_background")
 
-PATH_TO_TIMETRAKED_JSON_FILE: str = '/home/jared/.vscode/extensions/fabriciorojas.localtimetracker-1.0.6/timeTrakedL.json'
+PATH_TO_TIMETRAKED_JSON_FILE: str = 'C:\\Users\\grossj\\.vscode\\extensions\\fabriciorojas.localtimetracker-1.0.6\\timeTrakedL.json'
 # cd /home/jared/Documents/Python-Projects/Activity-Tracker/JareBear12418/; /usr/bin/env /usr/local/bin/python3.8 /home/jared/Documents/Python-Projects/Activity-Tracker/JareBear12418/main.py
 def update_file_to_commit():
     with open(PATH_TO_TIMETRAKED_JSON_FILE, 'r') as f: timeTrakedL = json.load(f)
@@ -28,6 +30,9 @@ def update_file_to_commit():
     # Remove duplicate languages
     all_used_languages = list(set(all_used_languages))
 
+    # Get better language names from language names class
+    language_class_names_old, language_class_names_new = zip(*Language_Names().Names.items())
+
     # Make a dictionary with all the language names in place
     time_in_each_lang = {langauge:[] for langauge in all_used_languages}
 
@@ -36,8 +41,7 @@ def update_file_to_commit():
         for name in d1['languageTime']: time_in_each_lang[name].append(d1['languageTime'].get(name))
 
     # addying the sum of each list to get one number and not a list of numbers.
-    for i in  time_in_each_lang:
-        time_in_each_lang[i] = (sum(time_in_each_lang[i]))
+    for i in time_in_each_lang: time_in_each_lang[i] = (sum(time_in_each_lang[i]))
 
     # Sort the dictionary
     time_in_each_lang = dict(sorted(time_in_each_lang.items(), key=lambda item: item[1]))
@@ -46,10 +50,11 @@ def update_file_to_commit():
 
     # Split up keys and values from the dictionary into two lists.
     for key, value in time_in_each_lang.items():
+        key = [language_class_names_new[index] for index, name in enumerate(language_class_names_old) if key == name][0] # prettify name using language names class
         time_formating = (
-            time.strftime("%-Hh %-Mm %-Ss",  time.gmtime(value)) if value > 3600 else
-            time.strftime("%-Mm %-Ss",  time.gmtime(value)) if value > 60 else
-            time.strftime("%-Ss",  time.gmtime(value))
+            time.strftime("%Hh %Mm %Ss",  time.gmtime(value)) if value > 3600 else
+            time.strftime("%Mm %Ss",  time.gmtime(value)) if value > 60 else
+            time.strftime("%Ss",  time.gmtime(value))
             )
         time_in_each_lang_KEYS.append(key + f' - {time_formating}')
         time_in_each_lang_VALUES.append(value)
@@ -57,6 +62,7 @@ def update_file_to_commit():
     def combine_column_names(column_name,
                              cur_value,
                              sums):
+        column_name = [language_class_names_new[index] for index, name in enumerate(language_class_names_old) if column_name == name][0] # prettify name with langauge class names
         percentage = round(cur_value/sums*100,2)
         return "{} {}%".format(column_name,percentage)
 
@@ -95,7 +101,7 @@ def update_file_to_commit():
                         horizontalalignment=horizontalalignment, **kw)
     plt.xticks([])
     plt.yticks([])
-    plt.savefig('/home/jared/Documents/Python-Projects/Activity-Tracker/JareBear12418/stats.png',
+    plt.savefig('C:\\Users\\grossj\\Desktop\\Code\\VSCode-Coding-Activity-on-Github-Profile\\stats.png',
                 bbox_inches='tight',
                 dpi=100,
                 transparent=True)
@@ -111,4 +117,4 @@ def commit_repository():
 
 if __name__ == '__main__':
     update_file_to_commit()
-    commit_repository()
+    # commit_repository()

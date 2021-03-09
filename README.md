@@ -10,7 +10,7 @@ Have an activity graph on your GitHub profile showcasing your activity in visual
 2. Clone your profile repository.
     - E.x: `git clone https://github.com/JareBear12418/JareBear12418/`
     - Your username twice basicly.
-3. *Copy* the [main.py](https://github.com/JareBear12418/VSCode-Coding-Activity-on-Github-Profile/blob/master/main.py) into your cloned repository on your system.
+3. *Copy* the [main.py](https://github.com/JareBear12418/VSCode-Coding-Activity-on-Github-Profile/blob/master/main.py) and [names_class.py](https://github.com/JareBear12418/VSCode-Coding-Activity-on-Github-Profile/blob/master/names_class.py) into your cloned repository on your system.
 4.  Create a `.gitignore` file in your repository. 
     - Add `main.py` and `.gitignore`.
 
@@ -26,9 +26,11 @@ So far your directory should look like the following:
 - That is everything setup for script, Now all we need to do is run the script daily. This repository is basicly just a clone of [Daily Git Commit](https://github.com/JareBear12418/Daily-Git-Commit) in terms of doing the same thing, commiting to a repository. So alot of tips and instructions are listed there if you encounter any errors with `gitpython` I will not repeat them here. The script should handle everyhing else, all thats left to do call it daily.
 
 I am using crontab to run this script daily. My oneline command looks like so:
+
 ```bash
 cd /home/jared/Documents/Python-Projects/Activity-Tracker/JareBear12418/; /usr/bin/env /usr/local/bin/python3.8 /home/jared/Documents/Python-Projects/Activity-Tracker/JareBear12418/main.py
 ```
+
 Again, make sure path's are set to your paths, the above command only works for my system. Change the paths to your need. I am using full paths just to play it safe, you might not need to use full paths.
 
 It's a good idea to store your git credentials so you don't always have to log in (LINUX ONLY)
