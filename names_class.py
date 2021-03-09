@@ -8,7 +8,7 @@ class Language_Names:
     '''
     def __init__(self):
         self.Names: dict = {
-            'python': 'Pyhton',
+            'python': 'Python',
             'javascript': 'JavaScript',
             'typescript': 'TypeScript',
             'csharp': 'C#',

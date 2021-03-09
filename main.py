@@ -3,15 +3,32 @@ import time
 
 import matplotlib.colors as mcolors
 import matplotlib.pyplot as plt
+from matplotlib.patches import PathPatch
+from matplotlib.offsetbox import OffsetImage, AnnotationBbox
 import numpy as np
 from git import Repo
 
+import cv2
+import numpy as np
+
 from names_class import Language_Names
+from logos_class import Logos_Names
 
 plt.style.use("dark_background")
 
 PATH_TO_TIMETRAKED_JSON_FILE: str = 'C:\\Users\\grossj\\.vscode\\extensions\\fabriciorojas.localtimetracker-1.0.6\\timeTrakedL.json'
 # cd /home/jared/Documents/Python-Projects/Activity-Tracker/JareBear12418/; /usr/bin/env /usr/local/bin/python3.8 /home/jared/Documents/Python-Projects/Activity-Tracker/JareBear12418/main.py
+
+def img_to_pie( fn, wedge, xy, zoom=1, ax = None):
+    if ax is None: ax=plt.gca()
+    im = plt.imread(fn, format='png')
+    path = wedge.get_path()
+    patch = PathPatch(path, facecolor='none')
+    ax.add_patch(patch)
+    imagebox = OffsetImage(im, zoom=zoom, clip_path=patch, zorder=-10)
+    ab = AnnotationBbox(imagebox, xy, xycoords='data', pad=0, frameon=False)
+    ax.add_artist(ab)
+
 def update_file_to_commit():
     with open(PATH_TO_TIMETRAKED_JSON_FILE, 'r') as f: timeTrakedL = json.load(f)
 
@@ -50,7 +67,8 @@ def update_file_to_commit():
 
     # Split up keys and values from the dictionary into two lists.
     for key, value in time_in_each_lang.items():
-        key = [language_class_names_new[index] for index, name in enumerate(language_class_names_old) if key == name][0] # prettify name using language names class
+        try: key = [language_class_names_new[index] for index, name in enumerate(language_class_names_old) if key == name][0] # prettify name using language names class
+        except IndexError: pass
         time_formating = (
             time.strftime("%Hh %Mm %Ss",  time.gmtime(value)) if value > 3600 else
             time.strftime("%Mm %Ss",  time.gmtime(value)) if value > 60 else
@@ -62,7 +80,8 @@ def update_file_to_commit():
     def combine_column_names(column_name,
                              cur_value,
                              sums):
-        column_name = [language_class_names_new[index] for index, name in enumerate(language_class_names_old) if column_name == name][0] # prettify name with langauge class names
+        try: column_name = [language_class_names_new[index] for index, name in enumerate(language_class_names_old) if column_name == name][0] # prettify name with langauge class names
+        except IndexError: pass
         percentage = round(cur_value/sums*100,2)
         return "{} {}%".format(column_name,percentage)
 
@@ -76,10 +95,21 @@ def update_file_to_commit():
                          subplot_kw=dict(aspect="equal"))
     lang_names = list(final_data.keys())
     data = list(final_data.values())
+    beat = np.array(time_in_each_lang_VALUES)
     wedges, _ = ax.pie(data,
-                       wedgeprops=dict(width=0.7),
-                       startangle=-40,
-                       colors=c_list)
+                       shadow=True,
+                       explode=(beat == max(beat)) * 0.1,
+                       wedgeprops=dict(
+                           width=0.7,
+                           linewidth=1.5,
+                           antialiased=True,
+                           edgecolor='k',
+                           linestyle='solid'), #dashed
+                       startangle=-20,
+                       colors=c_list
+                       )
+    # wedges[0].set_hatch('/')
+
     kw = dict(arrowprops=dict(arrowstyle="-"),
               zorder=0,
               va="center")
@@ -99,13 +129,21 @@ def update_file_to_commit():
                         xy=(x, y),
                         xytext=(1*np.sign(x), 1.4*y),
                         horizontalalignment=horizontalalignment, **kw)
+
+    # Get better language names from language names class
+    logo_name, logo_path = zip(*Logos_Names().Paths.items())
+    for index, wedge in enumerate(wedges):
+        for i, name in enumerate(logo_name):
+            if time_in_each_lang_KEYS[index].__contains__(name):
+                img_to_pie(logo_path[i], wedge, xy=(-0.3,0.3), zoom=0.5,ax=ax)
+                wedge.set_zorder(3)
+
     plt.xticks([])
     plt.yticks([])
     plt.savefig('C:\\Users\\grossj\\Desktop\\Code\\VSCode-Coding-Activity-on-Github-Profile\\stats.png',
                 bbox_inches='tight',
                 dpi=100,
                 transparent=True)
-
 FILE_TO_COMMIT_NAME: str = 'stats.png'
 
 def commit_repository():
