@@ -25,7 +25,7 @@ PATH_TO_TIMETRAKED_JSON_FILE: str = f'{HOME}/.vscode/extensions/fabriciorojas.lo
 
 
 
-SHOW_ONLY_PROGRAMMING_LANGUAGES: bool = False
+SHOW_ONLY_PROGRAMMING_LANGUAGES: bool = True
 SHOW_ICONS: bool = True
 
 
@@ -135,7 +135,7 @@ def update_file_to_commit():
         # Add logo to graph
         def img_to_pie( fn, wedge, xy, zoom=1, ax = None):
             if ax is None: ax=plt.gca()
-            im = plt.imread(fn, format='png')
+            im = plt.imread(f'{str(os.path.dirname(os.path.realpath(__file__)))}/{fn}', format='png')
             patch = PathPatch(wedge.get_path(), facecolor='none')
             ax.add_patch(patch)
             imagebox = OffsetImage(im, zoom=zoom, clip_path=patch, zorder=-10)
@@ -172,4 +172,4 @@ def commit_repository():
 
 if __name__ == '__main__':
     update_file_to_commit()
-    # commit_repository()
+    commit_repository()
