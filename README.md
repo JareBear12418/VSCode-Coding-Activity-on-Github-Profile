@@ -10,18 +10,13 @@ Have an activity graph on your GitHub profile showcasing your activity in visual
 2. Clone your profile repository.
     - E.x: `git clone https://github.com/JareBear12418/JareBear12418/`
     - Your username twice basicly.
-3. *Copy* the [main.py](https://github.com/JareBear12418/VSCode-Coding-Activity-on-Github-Profile/blob/master/main.py) and [names_class.py](https://github.com/JareBear12418/VSCode-Coding-Activity-on-Github-Profile/blob/master/names_class.py) into your cloned repository on your system.
+3. *Copy* **ALL** python scripts from this repository into your cloned repository on your system, along side with the __logos folder__.
 4.  Create a `.gitignore` file in your repository. 
-    - Add `main.py` and `.gitignore`.
+    - Add `*.py`, `.gitignore` and `/logos` to the `.gitignore` file.
 
 So far your directory should look like the following:
 
-![image](https://user-images.githubusercontent.com/25397800/110263807-61009600-7f7d-11eb-9638-1a8eb4bbcc85.png)
-
-6. [PATH_TO_TIMETRAKED_JSON_FILE](https://github.com/JareBear12418/VSCode-Coding-Activity-on-Github-Profile/blob/main/main.py#L11) make sure this path is setup for your system. 
-    - My username is *jared* change it to your username.
-7. [Line 98](https://github.com/JareBear12418/VSCode-Coding-Activity-on-Github-Profile/blob/main/main.py#L98) make sure the save path is correct.
-8. Make sure the [repo](https://github.com/JareBear12418/VSCode-Coding-Activity-on-Github-Profile/blob/main/main.py#L106) is set to the direct path. 
+![image](https://user-images.githubusercontent.com/25397800/110671702-73085180-8194-11eb-81ae-6bde03897263.png)
 
 - That is everything setup for script, Now all we need to do is run the script daily. This repository is basicly just a clone of [Daily Git Commit](https://github.com/JareBear12418/Daily-Git-Commit) in terms of doing the same thing, commiting to a repository. So alot of tips and instructions are listed there if you encounter any errors with `gitpython` I will not repeat them here. The script should handle everyhing else, all thats left to do call it daily.
 
@@ -47,6 +42,13 @@ Now we need to edit our [README.md](https://github.com/JareBear12418/JareBear124
 <h4 align="center"> 2021/02/28 4:11 PM - TODAY </h4>
 </p>
 ```
-![image](https://raw.githubusercontent.com/JareBear12418/JareBear12418/11e19755f2d297751cefbdcfff1342c5fccd5704/stats.png)
+
+yields:
+
+<h3 align="center"> &#x1f4c8; Coding Activity </h3>
+<p align="center">
+<img width="65%" align="center" src="https://github.com/jarebear12418/jarebear12418/blob/main/stats.png" alt="Activity" />
+<h4 align="center"> 2021/02/28 4:11 PM - TODAY </h4>
+</p>
 
 Whenever you update the `stats.png` via the script, your github profile automaticly updates the preview, so your all done setting up. It's a bit of a crude setup. You're better off just using wakatime but even that its still tricky to get it set up properly. I prefer this solution because wakatime is to complicated to setup. This way I can make my own solution.
