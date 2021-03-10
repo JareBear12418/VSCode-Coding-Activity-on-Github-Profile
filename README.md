@@ -20,7 +20,7 @@ So far your directory should look like the following:
 
 - That is everything setup for script, Now all we need to do is run the script daily. This repository is basicly just a clone of [Daily Git Commit](https://github.com/JareBear12418/Daily-Git-Commit) in terms of doing the same thing, commiting to a repository. So alot of tips and instructions are listed there if you encounter any errors with `gitpython` I will not repeat them here. The script should handle everyhing else, all thats left to do call it daily.
 
-make sure you correct your path to the shell script.
+make sure you correct your path to the shell script and the paths in the shell script.
 
 my crontab looks like so:
 ```sh
