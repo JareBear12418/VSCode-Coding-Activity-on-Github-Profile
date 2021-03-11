@@ -71,10 +71,13 @@ def update_file_to_commit():
     for key, value in time_in_each_lang.items():
         try: key = [language_class_names_new[index] for index, name in enumerate(language_class_names_old) if key == name][0] # prettify name using language names class
         except IndexError: pass
+        seconds = value
+        minutes, seconds = divmod(seconds, 60)
+        hours, minutes = divmod(minutes, 60)
         time_formating = (
-            time.strftime("%Hh %Mm %Ss",  time.gmtime(value)) if value > 3600 else
-            time.strftime("%Mm %Ss",  time.gmtime(value)) if value > 60 else
-            time.strftime("%Ss",  time.gmtime(value))
+            f'{hours}h {minutes}m {seconds}s' if value > 3600 else
+            f'{minutes}m {seconds}s' if value > 60 else
+            f'{seconds}s'
             )
         time_in_each_lang_KEYS.append(key + f' - {time_formating}')
         time_in_each_lang_VALUES.append(value)
